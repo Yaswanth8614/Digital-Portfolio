@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            opacity: 0;
+            transform: translateY(-50px);
+            animation: fadeIn 1.5s ease-out forwards;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav ul li a:hover {
+            color: #ff4b2b;
+        }
+
+        .section-content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            margin: 2rem auto;
+            width: 80%;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            text-align: justify;
+            opacity: 0;
+            transform: perspective(1000px) rotateY(-90deg);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .download-button {
+            background: #ff4b2b;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .download-button:hover {
+            background: #ff6a4d;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .section-highlight {
+            animation: highlight 0.5s ease-in-out;
+        }
+
+        @keyframes highlight {
+            0% { background-color: #ffff99; }
+            100% { background-color: rgba(255, 255, 255, 0.9); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Yaswanth M</h1>
+            <p>Web Developer</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#resume">Resume</a></li>
+        </ul>
+    </nav>
+
+    <section id="about" class="section-content">
+        <h2>About Me</h2>
+        <p>I am Yaswanth ,Currently pursuing BCA at FACEPrep Campus, Terfs Academy College of Arts and Science.
+            Proficient problem solver with expertise in C and C++. Above-beginner skills in front-end
+            development. </p>
+    </section>
+
+    <section id="education" class="section-content">
+        <h2>Education</h2>
+        <p>Terf's Academy College of Arts and Science</p>
+    </section>
+
+    <section id="skills" class="section-content">
+        <h2>Skills</h2>
+        <ul>
+            <li>C++</li>
+        </ul>
+    </section>
+
+    <section id="projects" class="section-content">
+        <h2>Projects</h2>
+        <ul>
+            <li><a href="#">Bank Calculator</a></li>
+        </ul>
+    </section>
+
+    <section id="resume" class="section-content">
+        <center>
+            <h2>Resume</h2>
+            <a href="file.pdf" target="_blank" class="download-button">Download CV</a>
+        </center>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Yaswanth M</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 50,
+                        behavior: 'smooth'
+                    });
+                    targetElement.classList.add('section-highlight');
+                    setTimeout(() => targetElement.classList.remove('section-highlight'), 1000);
+                }
+            });
+        });
+
+        document.addEventListener("scroll", function() {
+            document.querySelectorAll(".section-content").forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < window.innerHeight - 100) {
+                    section.classList.add("visible");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
